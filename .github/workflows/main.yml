@@ -25,11 +25,11 @@ jobs:
 
       - name: Run schemachange
         env:
-          SF_ACCOUNT: ${{ secrets.DEV_ACCOUNT }}
-          SF_USERNAME: ${{ secrets.DEV_USER }}
-          SF_ROLE: ${{ secrets.DEV_ROLE }}
-          SF_WAREHOUSE: ${{ secrets.DEV_WAREHOUSE }}
-          SF_DATABASE: ${{ secrets.DEV_DATABASE }}
+          DEV_ACCOUNT: ${{ secrets.DEV_ACCOUNT }}
+          DEV_USER: ${{ secrets.DEV_USER }}
+          DEV_ROLE: ${{ secrets.DEV_ROLE }}
+          DEV_WAREHOUSE: ${{ secrets.DEV_WAREHOUSE }}
+          DEV_DATABASE: ${{ secrets.DEV_DATABASE }}
           SNOWFLAKE_PASSWORD: ${{ secrets.DEV_PASSWORD }}
         run: |
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
@@ -38,4 +38,4 @@ jobs:
           pip install schemachange
           
           echo "Step 2: Running schemachange"
-          schemachange -f $GITHUB_WORKSPACE -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
+          schemachange -f $GITHUB_WORKSPACE -a $DEV_ACCOUNT -u $DEV_USERNAME -r $DEV_ROLE -w $DEV_WAREHOUSE -d $DEV_DATABASE -c $DEV_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
