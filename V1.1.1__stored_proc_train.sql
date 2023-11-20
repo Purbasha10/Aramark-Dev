@@ -75,7 +75,7 @@ def main(session: snowpark.Session, training_table: str)-> str:
     df[''Category''] = label_encoder.fit_transform(df[''Category''])
     le_file = os.path.join(''/tmp/'', ''categoryEncoder.joblib'')
     dump(label_encoder, le_file)
-    session.file.put(le_file, "@MODELS",overwrite=True)
+    session.file.put(le_file, "@SANDBOX_STAGE.MODEL_STG",overwrite=True)
     x = df.drop(columns = [''Category''], axis = 1)
     y = df[''Category'']
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, stratify=y)
@@ -84,7 +84,7 @@ def main(session: snowpark.Session, training_table: str)-> str:
     transformer.fit(x_train)
     trf_file = os.path.join(''/tmp/'', ''trf.joblib'')
     dump(transformer, trf_file)
-    session.file.put(trf_file, "@MODELS",overwrite=True)
+    session.file.put(trf_file, "@SANDBOX_STAGE.MODEL_STG",overwrite=True)
     xtrain_count = transformer.transform(x_train)
     xvalid_count = transformer.transform(x_test)
     #x_combined = sp.hstack(x.apply(lambda col: count_vect.fit_transform(col)))
@@ -102,7 +102,7 @@ def main(session: snowpark.Session, training_table: str)-> str:
     print("LinearSVC, Count Vectors: ", accuracySVM)
     model_file2 = os.path.join(''/tmp/'', ''SVMmodel.joblib'')
     dump(modelSVM, model_file2)
-    session.file.put(model_file2, "@MODELS",overwrite=True)
+    session.file.put(model_file2, "@SANDBOX_STAGE.MODEL_STG",overwrite=True)
     print("SVM model saved to stage")
 
     # Return value will appear in the Results tab.
