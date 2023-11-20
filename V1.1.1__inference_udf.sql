@@ -2,7 +2,7 @@ create or replace function categorize_products(MasterItemName string, MinorSourc
 returns string
 language python
 runtime_version=3.8
-imports=('@models/SVMmodel.joblib.gz','@models/categoryEncoder.joblib.gz', '@models/trf.joblib.gz')
+imports=('@sandbox_stage.model_stg/SVMmodel.joblib.gz','@sandbox_stage.model_stg/categoryEncoder.joblib.gz', '@sandbox_stage.model_stg/trf.joblib.gz')
 PACKAGES = ('numpy','pandas','joblib', 'scikit-learn==1.2.2', 'regex', 'unicodedata2')
 handler='classify'
 as
