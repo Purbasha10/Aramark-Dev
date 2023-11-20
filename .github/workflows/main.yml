@@ -30,7 +30,7 @@ jobs:
           DEV_ROLE: ${{ secrets.DEV_ROLE }}
           DEV_WAREHOUSE: ${{ secrets.DEV_WAREHOUSE }}
           DEV_DATABASE: ${{ secrets.DEV_DATABASE }}
-          DEV_PASSWORD: ${{ secrets.DEV_PASSWORD }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.DEV_PASSWORD }}
         run: |
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           python --version
